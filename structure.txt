@@ -1,0 +1,103 @@
+D:\Projects\Front end\React projects\jwazzy
+├── api
+|  ├── confirm-payment.js
+|  └── create-payment-intent.js
+├── config
+|  ├── app.config.js
+|  └── stripe.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── public
+|  └── manifest.json
+├── README.md
+├── sanity-studio
+|  ├── components
+|  |  ├── Logo.jsx
+|  |  └── Preview.js
+|  ├── package-lock.json
+|  ├── package.json
+|  ├── plugins
+|  |  └── dashboard-widgets
+|  |     └── project-info
+|  |        └── index.jsx
+|  ├── sanity.cli.js
+|  ├── sanity.config.js
+|  └── schemas
+|     ├── documents
+|     |  ├── booking.js
+|     |  ├── category.js
+|     |  ├── destination.js
+|     |  ├── payment.js
+|     |  ├── review.js
+|     |  ├── tour.js
+|     |  └── user.js
+|     ├── index.js
+|     ├── objects
+|     |  ├── bookingReference.js
+|     |  ├── imageGallery.js
+|     |  ├── location.js
+|     |  └── price.js
+|     └── README.md
+├── src
+|  ├── App.jsx
+|  ├── AppLayout.jsx
+|  ├── components
+|  |  ├── CheckoutForm.jsx
+|  |  ├── DestinationCard.jsx
+|  |  ├── Footer.jsx
+|  |  ├── LoadingSpinner.jsx
+|  |  ├── Navbar.jsx
+|  |  ├── NetworkOffline.jsx
+|  |  ├── NetworkStatusHandler.jsx
+|  |  ├── ProtectedRoute.jsx
+|  |  ├── PublicRoute.jsx
+|  |  ├── ScrollToTop.jsx
+|  |  └── TourCard.jsx
+|  ├── config
+|  |  └── sanity.js
+|  ├── contexts
+|  |  ├── AuthContext.jsx
+|  |  ├── BookingContext.jsx
+|  |  ├── LanguageContext.jsx
+|  |  ├── StripeContext.jsx
+|  |  └── ThemeContext.jsx
+|  ├── hooks
+|  |  ├── useLanguage.js
+|  |  └── useLocalStorage.js
+|  ├── index.css
+|  ├── lib
+|  |  ├── sanityClient.js
+|  |  └── stripe.js
+|  ├── main.jsx
+|  ├── pages
+|  |  ├── About.jsx
+|  |  ├── Booking.jsx
+|  |  ├── BookingConfirmation.jsx
+|  |  ├── Contact.jsx
+|  |  ├── Destinations.jsx
+|  |  ├── ForgotPassword.jsx
+|  |  ├── Home.jsx
+|  |  ├── Login.jsx
+|  |  ├── MyBookings.jsx
+|  |  ├── Payment.jsx
+|  |  ├── Prifile.jsx
+|  |  ├── Register.jsx
+|  |  └── Tours.jsx
+|  ├── Payment
+|  ├── services
+|  |  ├── api.js
+|  |  ├── authService.js
+|  |  ├── helpers.js
+|  |  └── stripeService.js
+|  └── utils
+|     ├── constants.js
+|     ├── i18n.js
+|     └── invoice.js
+├── structure.txt
+├── tailwind.config.js
+└── vite.config.js
+
+
+λ npx tree-cli -l 99 --ignore "node_modules/,.git/,dist/,build/" -o structure.txt

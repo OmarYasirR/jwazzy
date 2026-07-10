@@ -1,0 +1,190 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* English Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Arabic Fonts - Multiple options for better compatibility */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+/* Base font for the app */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Tajawal', 'Tahoma', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RTL Specific Styles */
+[dir="rtl"] {
+  text-align: right;
+  font-family: 'Tajawal';
+}
+
+/* Arabic font classes for specific elements */
+.font-arabic {
+  font-family: 'Tajawal';
+}
+
+.font-english {
+  font-family: 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif';
+}
+
+.font-heading {
+  font-family: 'Tajawal';
+}
+
+/* Improved RTL text rendering */
+[dir="rtl"] * {
+  letter-spacing: 0 !important;
+}
+
+/* Better line height for Arabic text */
+[dir="rtl"] p,
+[dir="rtl"] span,
+[dir="rtl"] div {
+  line-height: 1.8;
+}
+
+/* Arabic-specific typography improvements */
+.arabic-text {
+  font-family: 'Tajawal';
+  line-height: 1.8;
+  letter-spacing: 0;
+  word-spacing: normal;
+}
+
+/* Fix for Arabic numerals in RTL */
+[dir="rtl"] .english-numbers {
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-primary-light dark:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark dark:hover:bg-primary-light transition-colors duration-300;
+}
+
+.btn-secondary {
+  @apply bg-secondary-light dark:bg-secondary-dark text-white px-6 py-3 rounded-lg font-semibold hover:bg-secondary-dark dark:hover:bg-secondary-light transition-colors duration-300;
+}
+
+/* RTL-specific button styles */
+[dir="rtl"] .btn-primary,
+[dir="rtl"] .btn-secondary {
+  font-family: 'Tajawal';
+  font-weight: 600;
+}
+
+/* Arabic text utilities */
+.text-arabic {
+  font-family: 'Tajawal';
+  line-height: 1.8;
+}
+
+.text-english {
+  font-family: 'Inter', 'system-ui', sans-serif;
+}
+
+/* Fix for form elements in RTL */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+  text-align: right;
+  font-family: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Tajawal', sans-serif;
+}
+
+/* Ensure English text in forms maintains LTR in RTL layout */
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="url"],
+[dir="rtl"] input[type="number"] {
+  direction: ltr;
+  text-align: left;
+  font-family: 'Inter', 'monospace';
+}
+
+/* RTL animations */
+@keyframes slide-in-rtl {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-rtl {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-slide-in-rtl {
+  animation: slide-in-rtl 0.3s ease-out;
+}
+
+.animate-slide-out-rtl {
+  animation: slide-out-rtl 0.3s ease-out;
+}
