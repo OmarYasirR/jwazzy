@@ -113,3 +113,4 @@ dist-ssr
 .idea
 *.swp
 *.swo
+uploadDestinations.js

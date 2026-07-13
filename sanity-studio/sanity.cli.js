@@ -6,5 +6,8 @@ export default defineCliConfig({
     dataset: 'production'
   },
   studioHost: 'jwazzy-travel',
-  autoUpdates: true,
+  deployment: {
+    appId: 'dvbh3s80daol5q3v43qkv5ha',
+    autoUpdates: true
+  }
 })

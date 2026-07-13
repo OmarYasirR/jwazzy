@@ -21,6 +21,7 @@ const Booking = () => {
     
     if (step === 1) {
       if (!bookingDetails.tour) newErrors.tour = isRTL ? 'يرجى اختيار الجولة' : 'Please select a tour'
+      setTour(bookingDetails.tour)
     }
     
     if (step === 2) {
@@ -45,16 +46,19 @@ const Booking = () => {
   }
 
   const navigateBack = () => {
-    navigate(-1)
-    setTour(null)
+    if (step === 1) {
+      navigate(-1)
+      setTour(null)
+    }
+    
+    if (step === 2) {
+      setCurrentStep(1)
+      setDate('')
+    }
+    if (step === 3) {
+      setCurrentStep(2)
+    }
   }
-
-  const handleBack = () => {
-    setCurrentStep(prev => prev - 1)
-  }
-
-    // navigate('/booking-confirmation', { state: { bookingId: confirmedBooking.id } })
-
 
   const handleSubmit = () => {
     if (validateStep(3)) {
@@ -360,7 +364,7 @@ const Booking = () => {
                 {isRTL ? 'التالي' : 'Next'}
               </button>
               <button
-                onClick={handleBack}
+                onClick={navigateBack}
                 className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
               >
                 {isRTL ? 'الغاء' : 'Cancel'}
@@ -380,7 +384,7 @@ const Booking = () => {
                 <FiCheck />
               </button>
               <button
-                onClick={handleBack}
+                onClick={navigateBack}
                 className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-300 flex items-center gap-2"
               >
                 {isRTL ? 'الغاء' : 'Cancel'}

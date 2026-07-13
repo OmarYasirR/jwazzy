@@ -10,6 +10,7 @@ import NetworkOffline from './components/NetworkOffline'
 import { useEffect, useState } from 'react'
 
 
+
 // Protected Route Component
 // const ProtectedRoute = ({ children }) => {
 //   const { user, loading } = useAuth()
@@ -52,6 +53,8 @@ import { useEffect, useState } from 'react'
 function App() {
 
     const [isOnline, setIsOnline] = useState(navigator.onLine)
+  console.log(import.meta.env.VITE_SANITY_TOKEN)
+  
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true)

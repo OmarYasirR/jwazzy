@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLanguage } from '../contexts/LanguageContext'
 import DestinationCard from '../components/DestinationCard'
-import { FiSearch, FiFilter, FiX, FiStar, FiDollarSign, FiGlobe } from 'react-icons/fi'
+import { FiSearch, FiFilter, FiX, FiStar, FiDollarSign, FiGlobe, FiAlertCircle } from 'react-icons/fi'
+import { useBooking } from '../contexts/BookingContext'
 
 const Destinations = () => {
+  const { destinations } = useBooking()
   const { t } = useTranslation()
   const { isRTL } = useLanguage()
   const [searchTerm, setSearchTerm] = useState('')
@@ -16,120 +18,6 @@ const Destinations = () => {
     duration: ''
   })
 
-  const destinations = [
-    {
-      id: 1,
-      name: "Paris, France",
-      nameAr: "باريس، فرنسا",
-      image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "France",
-      countryAr: "فرنسا",
-      region: "europe",
-      price: 1200,
-      duration: 7,
-      rating: 4.8,
-      description: "Enjoy stunning architecture and world-class cuisine in the City of Lights",
-      descriptionAr: "استمتع بالهندسة المعمارية الرائعة والمطاعم العالمية في مدينة الأنوار"
-    },
-    {
-      id: 2,
-      name: "Tokyo, Japan",
-      nameAr: "طوكيو، اليابان",
-      image: "https://images.unsplash.com/photo-1540959733332-5b3d4b4f0a7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "Japan",
-      countryAr: "اليابان",
-      region: "asia",
-      price: 1500,
-      duration: 10,
-      rating: 4.9,
-      description: "Discover traditional culture and modern technology in Tokyo",
-      descriptionAr: "اكتشف الثقافة التقليدية والتكنولوجيا الحديثة في طوكيو"
-    },
-    {
-      id: 3,
-      name: "Dubai, UAE",
-      nameAr: "دبي، الإمارات",
-      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "UAE",
-      countryAr: "الإمارات",
-      region: "middle-east",
-      price: 900,
-      duration: 5,
-      rating: 4.7,
-      description: "Luxury experience among skyscrapers and golden deserts",
-      descriptionAr: "تجربة فاخرة بين ناطحات السحاب والصحراء الذهبية"
-    },
-    {
-      id: 4,
-      name: "New York, USA",
-      nameAr: "نيويورك، الولايات المتحدة",
-      image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "USA",
-      countryAr: "الولايات المتحدة",
-      region: "north-america",
-      price: 1300,
-      duration: 6,
-      rating: 4.6,
-      description: "The city that never sleeps, full of energy and culture",
-      descriptionAr: "مدينة لا تنام مليئة بالطاقة والثقافة"
-    },
-    {
-      id: 5,
-      name: "Bali, Indonesia",
-      nameAr: "بالي، إندونيسيا",
-      image: "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "Indonesia",
-      countryAr: "إندونيسيا",
-      region: "asia",
-      price: 800,
-      duration: 8,
-      rating: 4.8,
-      description: "Tropical paradise with stunning beaches and ancient temples",
-      descriptionAr: "جنة استوائية مع شواطئ خلابة ومعابد قديمة"
-    },
-    {
-      id: 6,
-      name: "Rome, Italy",
-      nameAr: "روما، إيطاليا",
-      image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "Italy",
-      countryAr: "إيطاليا",
-      region: "europe",
-      price: 1100,
-      duration: 5,
-      rating: 4.7,
-      description: "Explore ancient history and wonderful Italian cuisine",
-      descriptionAr: "استكشف التاريخ القديم والمطبخ الإيطالي الرائع"
-    },
-    {
-      id: 7,
-      name: "Cairo, Egypt",
-      nameAr: "القاهرة، مصر",
-      image: "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "Egypt",
-      countryAr: "مصر",
-      region: "africa",
-      price: 700,
-      duration: 4,
-      rating: 4.5,
-      description: "Discover ancient pyramids and rich cultural heritage",
-      descriptionAr: "اكتشف الأهرامات القديمة والتراث الثقافي الغني"
-    },
-    {
-      id: 8,
-      name: "Sydney, Australia",
-      nameAr: "سيدني، أستراليا",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      country: "Australia",
-      countryAr: "أستراليا",
-      region: "oceania",
-      price: 1600,
-      duration: 9,
-      rating: 4.8,
-      description: "Beautiful harbor city with iconic opera house and beaches",
-      descriptionAr: "مدينة ميناء جميلة مع دار أوبرا أيقونية وشواطئ رائعة"
-    }
-  ]
 
   const regions = [
     { value: '', label: isRTL ? 'جميع المناطق' : 'All Regions' },
@@ -224,7 +112,7 @@ const Destinations = () => {
     country: isRTL ? destination.countryAr : destination.country,
     description: isRTL ? destination.descriptionAr : destination.description,
     price: isRTL ? `${destination.price.toLocaleString('ar-EG')} $` : `$${destination.price}`,
-    duration: destination.duration.toString()
+    duration: destination?.duration?.toString()
   })
 
   return (
@@ -242,6 +130,24 @@ const Destinations = () => {
             }
           </p>
         </div>
+
+        {/* handle no destinations */}
+        {destinations.length === 0 && (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-8 max-w-md mx-auto">
+              <FiAlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+                {isRTL ? 'لا توجد وجهات متوفرة' : 'No destinations available'}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {isRTL 
+                  ? 'لا توجد وجهات مطابقة لبحثك'
+                  : 'No destinations match your search criteria'
+                }
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Search and Filter Bar */}
         <div className="mb-8">

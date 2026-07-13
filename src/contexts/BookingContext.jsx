@@ -61,6 +61,35 @@ export const BookingProvider = ({ children }) => {
   const [bookingHistory, setBookingHistory] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [destinations, setDestinations] = useState([])
+
+  // load destinations from sanity
+  const loadDestinations = useCallback(async () => {
+    try {
+      setLoading(true)
+      const query = `*[_type == "destination"] {
+        _id,
+        name,
+        nameAr,
+        image,
+        country,
+        countryAr,
+        region,
+        price,
+        duration,
+        rating,
+        description,
+        descriptionAr
+      }`
+      const destinations = await sanityClient.fetch(query)
+      setDestinations(destinations)
+    } catch (error) {
+      console.error('Error loading destinations:', error)
+      setError('Failed to load destinations')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
   // Load booking history from Sanity
   const loadBookingHistory = useCallback(async () => {
@@ -76,7 +105,7 @@ export const BookingProvider = ({ children }) => {
           nameAr,
           price,
           duration,
-          images
+          image
         },
         date,
         travelers,
@@ -103,7 +132,8 @@ export const BookingProvider = ({ children }) => {
   // Load booking history when user changes
   useEffect(() => {
     loadBookingHistory()
-  }, [loadBookingHistory])
+    loadDestinations()
+  }, [loadBookingHistory, loadDestinations])
 
   const setTour = useCallback((tour) => {
     setBookingDetails(prev => ({
@@ -144,13 +174,16 @@ export const BookingProvider = ({ children }) => {
 
     try {
       setLoading(true)
+
+
+      console.log(bookingDetails.tour)
       
       // Create booking document in Sanity
       const bookingDoc = {
         _type: 'booking',
         tour: {
           _type: 'reference',
-          _ref: bookingDetails.tour._id,
+          _ref: bookingDetails.tour._id || `${bookingDetails.tour.id}`,
         },
         customer: {
           _type: 'reference',
@@ -319,6 +352,7 @@ export const BookingProvider = ({ children }) => {
   }, [])
 
   const value = {
+    destinations,
     bookingDetails,
     bookingHistory,
     loading,

@@ -4,10 +4,16 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { FiMapPin, FiStar, FiUsers, FiGlobe, FiShield, FiAward } from 'react-icons/fi'
 import DestinationCard from '../components/DestinationCard'
 import { Link } from 'react-router-dom'
+import { useBooking } from '../contexts/BookingContext'
 
 const Home = () => {
   const { t } = useTranslation()
   const { isRTL } = useLanguage()
+
+  
+    const { bookingHistory, cancelBooking, destinations } = useBooking()
+    console.log(bookingHistory)
+    console.log(destinations)
 
   const featuredDestinations = [
     {
@@ -121,7 +127,7 @@ const Home = () => {
             {t('featured')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredDestinations.map((destination) => (
+            {destinations?.slice(0, 4).map((destination) => (
               <DestinationCard key={destination.id} destination={destination} />
             ))}
           </div>

@@ -26,7 +26,7 @@ export const StripeProvider = ({ children }) => {
       setLoading(true)
       setError('')
 
-      // ✅ FIRST: Create Stripe Payment Intent
+      // FIRST: Create Stripe Payment Intent
       const stripeResponse = await fetch('/api/create-payment-intent', {
         method: 'POST',
         headers: {
@@ -52,7 +52,7 @@ export const StripeProvider = ({ children }) => {
         throw new Error('No client secret received from Stripe')
       }
 
-      // ✅ SECOND: Create payment record in Sanity
+      // SECOND: Create payment record in Sanity
       const paymentDoc = {
         _type: 'payment',
         booking: {
@@ -76,7 +76,7 @@ export const StripeProvider = ({ children }) => {
       return {
         success: true,
         paymentId: createdPayment._id,
-        clientSecret: clientSecret, // ✅ Now this will be a valid client secret
+        clientSecret: clientSecret, // Now this will be a valid client secret
         paymentIntentId: paymentIntentId,
       }
     } catch (error) {
