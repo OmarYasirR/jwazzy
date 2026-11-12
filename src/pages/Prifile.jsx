@@ -13,12 +13,16 @@ import {
   FiSave,
   FiX,
   FiLock,
+  FiCheck,
+  FiStar,
+  FiClock,
   FiEye,
   FiEyeOff,
   FiAlertCircle,
 } from "react-icons/fi";
 import { Link } from 'react-router-dom'
 import {  useBooking } from '../contexts/BookingContext'
+import { formatDate, getStatusInfo } from "../services/helpers";
 
 
 const Profile = () => {

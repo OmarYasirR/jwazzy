@@ -19,6 +19,7 @@ import {
   FiStar,
 } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { getStatusInfo } from "../services/helpers";
 
 const MyBookings = () => {
   const { t } = useTranslation();
@@ -85,40 +86,7 @@ const MyBookings = () => {
     }
   };
 
-  const getStatusInfo = (status) => {
-    const statusConfig = {
-      draft: {
-        color: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-        icon: FiClock,
-        text: isRTL ? "مسودة" : "Draft",
-      },
-      confirmed: {
-        color:
-          "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400",
-        icon: FiCheck,
-        text: isRTL ? "مؤكد" : "Confirmed",
-      },
-      paid: {
-        color:
-          "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400",
-        icon: FiCheck,
-        text: isRTL ? "مدفوع" : "Paid",
-      },
-      cancelled: {
-        color: "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400",
-        icon: FiX,
-        text: isRTL ? "ملغى" : "Cancelled",
-      },
-      completed: {
-        color:
-          "bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400",
-        icon: FiStar,
-        text: isRTL ? "مكتمل" : "Completed",
-      },
-    };
 
-    return statusConfig[status] || statusConfig.draft;
-  };
 
   const getPaymentStatusInfo = (paymentStatus) => {
     const paymentConfig = {
