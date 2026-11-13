@@ -649,12 +649,12 @@ const Profile = () => {
                     </p>
                   ) : (
                     <div className="space-y-4">
-                      {bookingHistory.slice(0, 3).map((booking) => (
+                      {bookingHistory.slice(0, 3).map((booking, i) => (
                         <div
-                          key={booking.id}
+                          key={i}
                           className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg"
                         >
-                          <div>
+                          <div> 
                             <h3 className="font-semibold text-gray-800 dark:text-white">
                               {isRTL ? booking?.tour?.nameAr : booking?.tour?.name}
                             </h3>
@@ -665,10 +665,10 @@ const Profile = () => {
                           </div>
                           <span
                             className={`px-3 py-1 rounded-full text-sm font-medium ${
-                              getStatusInfo(booking?.status)?.color
+                              getStatusInfo(booking?.status, isRTL)?.color
                             }`}
                           >
-                            {getStatusInfo(booking?.status)?.text}
+                            {getStatusInfo(booking?.status, isRTL)?.text}
                           </span>
                         </div>
                       ))}

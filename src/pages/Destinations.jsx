@@ -339,9 +339,9 @@ const Destinations = () => {
 
         {/* Destinations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredDestinations.map((destination) => (
+          {filteredDestinations.map((destination, i) => (
             <DestinationCard 
-              key={destination.id} 
+              key={i} 
               destination={getFormattedDestination(destination)} 
             />
           ))}

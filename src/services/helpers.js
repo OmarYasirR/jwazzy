@@ -1,3 +1,13 @@
+import {
+  FiX,
+  FiCheck,
+  FiStar,
+  FiClock,
+} from "react-icons/fi";
+
+
+
+
 // Format currency
 export const formatCurrency = (amount, currency = "USD") => {
   return new Intl.NumberFormat("en-US", {
@@ -137,11 +147,11 @@ export const storage = {
 };
 
 
-  export const getStatusInfo = (status) => {
+  export const getStatusInfo = (status, isRTL) => {
     const statusConfig = {
       draft: {
         color: "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300",
-        icon: FiClock,
+        icon: 'FiClock',
         text: isRTL ? "مسودة" : "Draft",
       },
       confirmed: {

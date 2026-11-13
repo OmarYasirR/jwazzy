@@ -157,7 +157,7 @@ const MyBookings = () => {
       navigate("/destinations");
     }
   }, [navigate, bookingHistory.length]);
-
+  
   return (
     <div
       className={`min-h-screen py-12 ${isRTL ? "font-arabic arabic-text" : "font-english"}`}
@@ -252,17 +252,16 @@ const MyBookings = () => {
               </Link>
             </div>
           ) : (
-            filteredBookings.map((booking) => {
+            filteredBookings.map((booking, i) => {
               if (!booking.tour) return null; // Skip rendering if tour data is missing
-              const StatusIcon = getStatusInfo(booking.status).icon;
-              const statusConfig = getStatusInfo(booking.status);
+              const StatusIcon = getStatusInfo(booking.status, isRTL).icon;
+              const statusConfig = getStatusInfo(booking.status, isRTL);
               const paymentConfig = getPaymentStatusInfo(
                 booking.payment?.status,
               );
-              console.log("Booking:", booking);
               return (
                 <div
-                  key={booking.id}
+                  key={i}
                   className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
                 >
                   <div className="p-6">
